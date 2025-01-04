@@ -1,0 +1,43 @@
+Attempted the contest 
+https://leetcode.com/problems/substring-matching-pattern/description/
+3407. Substring Matching Pattern
+
+...THIS WAS MY ATTEMPT BUT NOT THE CORRECT SOLUTION ... I Will push correct code soon ....
+class Solution {
+public:
+    bool hasMatch(string s, string p) {
+        int _index;
+        int length_mains = s.length();
+        int length_stars = p.length();
+        int i =0 ,star_position=0 , count = 0;
+        for(i=0;i<length_stars;i++){
+            if(p[i] == '*'){
+                star_position = i;
+                break;
+            }
+        }
+        i = star_position+1;
+        int temp , j = 0;
+        temp = i;
+        while( j < length_mains && i < length_stars){
+            for(int k=j;k < length_mains;k++){
+                if(s[k]==p[i]){
+                    j = k ;
+                    break;
+                }
+            }
+            while(i<length_stars && j <length_mains){
+            if(s[j]!=p[i]){
+                break;
+            }
+            else{
+                    i++;
+                }
+        }
+            if(i>temp && i<length_stars){
+        return false;
+            }
+    }
+        return true;
+    }
+};
