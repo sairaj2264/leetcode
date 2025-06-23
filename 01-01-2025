@@ -3,7 +3,6 @@ You are given a string s, where every two consecutive vertical bars '|' are grou
 Return the number of '*' in s, excluding the '*' between each pair of '|'.
 
 Note that each '|' will belong to exactly one pair.
-
 class Solution {
 public:
     int countAsterisks(string s) {
