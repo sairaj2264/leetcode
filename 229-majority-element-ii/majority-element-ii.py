@@ -6,14 +6,22 @@ class Solution:
             dictt[element]+=1
 
             if len(dictt) > 2:
+                newDict = defaultdict(int)
                 for k,v in dictt.items():
                     dictt[k] -= 1
-                popList = []
-                for k,v in dictt.items():
-                    if dictt[k] == 0:
-                        popList.append(k)
-                for k in popList:
-                    dictt.pop(k)
+                    if dictt[k]>0:
+                        newDict[k] = dictt[k]
+                
+                dictt = newDict
+
+
+
+
+                # for k,v in dictt.items():
+                #     if dictt[k] == 0:
+                #         popList.append(k)
+                # for k in popList:
+                #     dictt.pop(k)
         target = len(nums)//3
         ans = []
         for k in dictt:
