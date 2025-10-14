@@ -37,7 +37,7 @@ Each row of this table indicates the product name of each product.
 
 <p>Return the resulting table in <strong>any order</strong>.</p>
 
-<p>The result format is in the following example.</p>
+<p>The result format is in the following example.</p> .....
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
