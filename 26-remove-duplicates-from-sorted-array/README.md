@@ -32,7 +32,7 @@ for (int i = 0; i &lt; k; i++) {
 <strong>Input:</strong> nums = [1,1,2]
 <strong>Output:</strong> 2, nums = [1,2,_]
 <strong>Explanation:</strong> Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
-It does not matter what you leave beyond the returned k (hence they are underscores).
+It does not matter what you leave beyond the returned k (hence they are underscores). yes return underscores
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
