@@ -12,7 +12,7 @@ class Solution:
                 dictt[a] = i
                 count+=1
                 ans = max(ans, count)
-                i+=1
+                i = i + 1
             else:
                 i = dictt[a]
                 dictt.clear()
