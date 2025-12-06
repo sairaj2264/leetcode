@@ -10,7 +10,7 @@ class Solution:
             val = prices[i]
             minn = min(minn,val)
             
-            temp = val - minn
+            temp =val - minn
 
             profit = max(temp, profit)
 
