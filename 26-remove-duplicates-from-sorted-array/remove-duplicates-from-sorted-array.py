@@ -1,27 +1,16 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-
-        numss  = []
         n = len(nums)
-        i = 0
-        unique = 0
-        if n == 1:
-            return 1
-        while(i<n-1):
-            if nums[i]!=nums[i+1]:
-                numss.append(nums[i])
-                unique = i
-            i+=1
-            if i == n-1 and nums[n-1]!=nums[unique]:
-                numss.append(nums[n-1])
-        lenn = len(numss)
-        if lenn == 0:
-            numss.append(nums[0])
-        lenn = len(numss)
-        i = 0
-        while(i<lenn):
-            nums[i] = numss[i]
-            i+=1
+        a = []
+        nums.insert(n,-101)
+        print(nums)
+        index = 0
+        for i in range(0,n):
+            if nums[i] != nums[i + 1]:
+                a.append(nums[i])
+                index += 1
 
-        return lenn
-        
+        for i in range(index):
+            nums[i] = a[i]
+        return index
+            
