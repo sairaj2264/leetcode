@@ -3,20 +3,19 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        # n = len(s)
-        # p1 = 0
-        # p2 = n - 1
 
-        # while(p1<p2):
-        #     temp = s[p1]
-        #     s[p1] = s[p2]
-        #     s[p2] = temp
-        #     p1+=1
-        #     p2-=1
+        n = len(s)
+        answer = []
+        def stringReverser (count , n):
+            if count == n:
+                return 
+            stringReverser(count + 1, n)
+            answer.append(s[count])
 
-        s.reverse()
+        stringReverser(0, n)
 
+        for i in range(0,n):
+            s[i] = answer[i]
+            
 
-
-        return s
-        
+            
