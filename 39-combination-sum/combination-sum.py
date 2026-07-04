@@ -1,34 +1,28 @@
-class Solution(object):
-
-
-    def combinationSum(self, candidates, target):
-        """
-        :type candidates: List[int]
-        :type target: int
-        :rtype: List[List[int]]
-        """
-
-        def combSum(i,arr,summ):
-            if i >= len(candidates):
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        n = len(candidates)
+        answer = []
+        temp = []
+        def combiSum(arr, n, target, temp, counter, summ, answer):
+            if counter == n:
+                if summ == target:    
+                    answer.append(temp[:])
+                    return
                 return
-            if summ == target:
-                ans.append(list(arr))
+
+            if summ > target or counter > n:
                 return
-            if summ < target:
-                arr.append(candidates[i])
-                summ += candidates[i]
-                combSum(i,arr,summ)
+            if counter < n:
+                temp.append(arr[counter])
+                summ += arr[counter]
 
-                arr.pop()
-                summ -= candidates[i]
-                combSum(i+1,arr,summ)
-
-
-
-        ans = []
-        arr = []
-        combSum(0,arr,0)
-        return ans
+            combiSum (arr,n,target,temp,counter,summ, answer)
+            summ -= arr[counter]
+            temp.pop()
+            combiSum (arr,n,target,temp,counter + 1,summ, answer)
+            return
+        combiSum(candidates, n, target, temp, 0, 0, answer)
+        return answer
 
 
         
