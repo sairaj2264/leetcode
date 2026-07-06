@@ -1,52 +1,32 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        mp = {
+            '(': 1,
+            ')': -1,
+            '{': 2,
+            '}': -2,
+            '[': 3,
+            ']': -3
+        }
+        stack = deque()
+        
+        for c in s:
+            if len(stack) == 0 and mp[c] > 0:
+                stack.append(mp[c])
 
-        stack = []
-        openn = ['(','{','[']
-
-
-
-
-        n = len(s)
-
-        if n %2 != 0:
-            return False
-
-        for i in range(n):
-            element = s[i]
-
-            if element in openn:
-                stack.append(element)
-            
-
-            elif element == ')' and len(stack) > 0:
-                temp = stack.pop()
-
-                if temp != '(':
-                    return False
-
-                
-            
-            elif element == ']' and len(stack) > 0:
-                temp = stack.pop()
-
-                if temp != '[':
-                    return False
-
-            elif element == '}' and len(stack) > 0:
-                temp = stack.pop()
-
-                if temp != '{':
-                    return False
-            else:
+            elif len(stack) == 0 and mp[c] < 0:
                 return False
 
-        
+            elif mp[c] < 0:
+                if stack[-1] + mp[c] != 0:
+                    return False
+                else:
+                    stack.pop()
+            elif mp[c] > 0:
+                stack.append(mp[c])
+
         if len(stack) == 0:
             return True
-        else:
-            return False
+        return False
                     
-                    
-
         
