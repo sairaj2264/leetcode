@@ -1,30 +1,41 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        n = len(height)
-        l_nums = [0]*n
-        r_nums = [0]*n
+        leftMax = 0
+        rightMax = 0
+
+        p1 = 0
+        p2 = len(height) - 1
         total = 0
+        while(p1<p2):
+            leftMax = max(leftMax, height[p1])
+            rightMax = max(rightMax, height[p2])
+            if leftMax == 0:
+                p1 += 1
+                continue
+            if rightMax == 0:
+                p2 -= 1
+                continue
 
-        l_max = 0
-        for i in range(1,n):
-            l_max = max(l_max, height[i-1])
-            l_nums[i] = l_max
+            if leftMax <= rightMax:
 
+                if height[p1] >= leftMax:
+                    leftMax = height[p1]
+                    p1+=1
 
-        r_max = 0
-        for i in range(n-2,-1,-1):
-            r_max = max(r_max, height[i+1])
-            r_nums[i] = r_max
+                elif height[p1] < leftMax:
+                    temp = leftMax - height[p1]
+                    total += temp
+                    p1+=1
+            
+                        # if leftMax <= rightMax:
+            else:
 
-        for i in range(0,n):
-            a = l_nums[i]
-            b = r_nums[i]
-            numm = min(a,b)
-            temp = numm - height[i]
-            if temp > 0:
-                total += temp
+                if height[p2] >= rightMax:
+                    rightMax = height[p2]
+                    p2-=1
 
+                elif height[p2] < rightMax:
+                    temp = rightMax - height[p2]
+                    total += temp
+                    p2-=1
         return total
-
-
-        
