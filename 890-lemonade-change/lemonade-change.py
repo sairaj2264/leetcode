@@ -24,8 +24,7 @@ class Solution:
                     five -= 1
                 elif five >= 3:
                     five -=3
-                else:
-                    return False
+                
             
 
 
