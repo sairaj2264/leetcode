@@ -8,15 +8,40 @@ class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         
         answer = []
-        def traverse(node):
 
-            if node is None:
-                return
+        current = root
 
-            answer.append(node.val)
-            traverse(node.left)
-            traverse(node.right)
+        while current is not None:
 
-        traverse(root)
+            if current.left is not None:
+                prev = current.left
+
+                while prev.right is not None and prev.right is not current:
+                    prev = prev.right
+                
+                if prev.right is None:
+                    prev.right = current
+                    answer.append(current.val)
+                    current = current.left
+                else:
+                    current = current.right
+            
+            else:
+                answer.append(current.val)
+                current = current.right
 
         return answer
+
+
+        # def traverse(node):
+
+        #     if node is None:
+        #         return
+
+        #     answer.append(node.val)
+        #     traverse(node.left)
+        #     traverse(node.right)
+
+        # traverse(root)
+
+        # return answer
