@@ -2,13 +2,14 @@ class Solution:
     def climbStairs(self, n: int) -> int:
         
         
-        dp = [-1] * (n + 1)
-        for i in range(0 , n + 1):
-            if i<=3:
-                dp[i] = i
-            else:
-                ans = (dp[i-1] + dp[i-2])
-                dp[i] = ans
+        prev1 = 2
+        prev2 = 1
+        if n == 1:
+            return 1
+        for i in range(3 , n + 1):
+            temp = prev1 + prev2
+            prev2 = prev1
+            prev1 = temp
 
         
-        return dp[n]
+        return prev1
