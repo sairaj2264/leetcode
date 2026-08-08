@@ -11,20 +11,18 @@ class Solution:
         if n == 2:
             return 1
 
-        dp = [-1] * (n + 1)
+        prev3 = 0
+        prev2 = 1
+        prev1 = 1
 
-        def recurse(n):
-            if n == 2 or n == 1:
-                return 1
-            elif n <= 0:
-                return 0
+
+        for i in range(3 , n + 1):
+            answer = prev3 + prev2 + prev1
+            prev3 = prev2
+            prev2 = prev1
+            prev1 = answer
+
+        return prev1
             
-            if dp[n] == -1:
-                answer = recurse(n-1) + recurse(n-2) + recurse(n -3)
-                dp[n] = answer
-            else:
-                answer = dp[n]
-            return answer
 
-        return recurse(n)
         
