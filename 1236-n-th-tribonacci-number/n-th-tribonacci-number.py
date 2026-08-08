@@ -1,6 +1,5 @@
 class Solution:
     def tribonacci(self, n: int) -> int:
-        arr = [0]*n
 
         if n == 0:
             return 0
