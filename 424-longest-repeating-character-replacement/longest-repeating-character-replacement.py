@@ -1,46 +1,28 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
 
-        lenn = 0
+        hm = {}
+
+
+        l = 0
+        r = 0
         n = len(s)
-        maxSize = 0
+        max_length = 0
+        max_freq = 0
 
-        p1= 0
-        freq = [0] * 26
-        for i in range(n):
-            char = s[i]
-            key = ord(char) - ord('A')
-            freq[key]+=1
-            count = 0
-            
-            maxx = 0
-            for j in freq:
-                maxx = max(maxx, j)
-                if j > 0:
-                    count += 1
-            
-            size = i - p1 + 1
-            val = size - maxx
-            if val<=k:
-                maxSize = max(maxSize, size)
+        while(r < n):
+            hm[s[r]] = hm.get(s[r],0) + 1
+            max_freq = max(max_freq, hm[s[r]])
+            length = r - l + 1
+            temp = length - max_freq
+            if temp <= k:
+                max_length = max(max_length,length)
             else:
-                ele = s[p1]
-                elem = ord(ele) - ord('A') 
-                freq[elem]-=1
-                p1+=1
-                i-=1
-
-
-
-        return maxSize
-
-
-
+                hm[s[l]] -= 1
+                l+=1
             
-
+            r += 1
+        print(hm)
+        return max_length
         
-
         
-
-
-
