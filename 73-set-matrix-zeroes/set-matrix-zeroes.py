@@ -26,9 +26,5 @@ class Solution:
             for j in range(m):
                 if matrix[i][j] == None:
                     action(i,j)
-        
-
-        for i in range(n):
-            for j in range(m):
-                if matrix[i][j] == None:
                     matrix[i][j] = 0
+        
