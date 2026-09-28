@@ -1,19 +1,15 @@
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        minn = 2**31 - 1
-
+    def maxProfit(self, prices: list[int]) -> int:
+        maxx = 0
+        minn = 1000000
         profit = 0
+        answer = 0
+        for i in prices:
+            current = i
+            minn = min(minn, current)
+            profit = current - minn
+            answer = max(answer, profit)
 
-        n = len(prices)
+        return answer
 
-        for i in range(n):
-            val = prices[i]
-            minn = min(minn,val)
             
-            temp =val - minn
-
-            profit = max(temp, profit)
-
-
-        return profit 
-        
