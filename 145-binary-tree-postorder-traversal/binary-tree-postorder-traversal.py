@@ -21,38 +21,51 @@ class Solution:
         # traverse(root)
         # return answer
 
-        if root is None:
-            return([])
-        stack = []
+        # if root is None:
+        #     return([])
+        # stack = []
 
-        preOrder = []
-        inOrder = []
-        postOrder = []
+        # preOrder = []
+        # inOrder = []
+        # postOrder = []
 
 
 
-        stack.append([root, 1])
+        # stack.append([root, 1])
 
-        while (len(stack) > 0):
+        # while (len(stack) > 0):
 
-            temp = stack.pop()
-            if temp[1] == 1:
-                preOrder.append(temp[0].val)
-                temp[1] += 1
-                stack.append(temp)
-                if temp[0].left is not None:
-                    stack.append([temp[0].left,1])
-            elif temp[1] == 2:
-                inOrder.append(temp[0].val)
-                temp[1] += 1
-                stack.append(temp)
-                if temp[0].right is not None:
-                    stack.append([temp[0].right, 1])
+        #     temp = stack.pop()
+        #     if temp[1] == 1:
+        #         preOrder.append(temp[0].val)
+        #         temp[1] += 1
+        #         stack.append(temp)
+        #         if temp[0].left is not None:
+        #             stack.append([temp[0].left,1])
+        #     elif temp[1] == 2:
+        #         inOrder.append(temp[0].val)
+        #         temp[1] += 1
+        #         stack.append(temp)
+        #         if temp[0].right is not None:
+        #             stack.append([temp[0].right, 1])
 
-            else:
-                postOrder.append(temp[0].val)
+        #     else:
+        #         postOrder.append(temp[0].val)
 
-        print(preOrder)
-        print(inOrder)
-        return(postOrder)
+        # print(preOrder)
+        # print(inOrder)
+        # return(postOrder)
+
+        answer = []
+        def recurse(root):
+            if root is None:
+                return
+
+            recurse(root.left)
+            recurse(root.right)
+            answer.append(root.val)
+
+        recurse(root)
+        return answer
+
         
