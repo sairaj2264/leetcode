@@ -3,20 +3,15 @@ class Solution:
 
 
         ans = []
-        def recurse(nums, temp, counter):
-            if counter == len(nums):
-                ans.append(temp.copy())
-                return
+        total = 1 << (len(nums))
 
-            temp.append(nums[counter])
-            recurse(nums, temp, counter + 1)
-            temp.pop()
-            recurse(nums, temp, counter + 1)
+        for i in range (0 , total):
+            temp = []
 
+            for j in range(0 ,  len(nums)):
+                if (i &(1 << j))> 0:
+                    temp.append(nums[j])
 
-        temp = []
-        recurse(nums, temp, 0)
-        return ans            
+            ans.append(temp.copy())
 
-
-        
+        return ans
