@@ -1,47 +1,42 @@
 class Solution:
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
 
-        stack = []
-
-        from collections import defaultdict
-        hm = defaultdict(list)
-        visited = [0] * numCourses
+        from collections import deque, defaultdict
+        adj = defaultdict(list)
+        q = deque()
+        in_degree = [0]*numCourses
+        answer = []
 
         for i in range(0 , len(prerequisites)):
-            hm[prerequisites[i][1]].append(prerequisites[i][0])
+            x,y = prerequisites[i]
+            adj[y].append(x)
 
-        def dfs(hm, visited, element):
+        for key in adj:
+            nodes = adj[key]
+            for node in nodes:
+                in_degree[node] += 1
 
-            if visited[element] == 1:
-                return False
+        for i in range(0 , len(in_degree)):
+            if in_degree[i] == 0:
+                q.append(i)
 
-            if visited[element] == 2:
-                return True
+        if len(q) == 0:
+            return answer
 
-            visited[element] = 1
-            elements = hm[element]
-            for i in range(0 , len(elements)):
-                ans = dfs(hm, visited, elements[i])
-                if ans == False:
-                    return False
-            
-            stack.append(element)
-            visited[element] = 2
-            return True
-        ans = True
-        for i in range(0 , len(visited)):
-            if visited[i] == 0:
-                ans = dfs(hm, visited, i)
-                if ans == False:
-                    break
+        count_operations = 0
 
-        if ans == False:
+        while (len(q) > 0):
+            node = q.popleft()
+            count_operations += 1
+            elements = adj[node]
+            for element in elements:
+                in_degree[element] -= 1
+                if in_degree[element] == 0:
+                    q.append(element)
+            if in_degree[node] == 0:
+                answer.append(node)
+
+        if count_operations < numCourses:
             return []
-
-        stack = stack[:: -1]
-        return stack 
-
-
-
-        
-        
+        else:
+            return answer
