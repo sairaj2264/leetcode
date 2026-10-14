@@ -1,15 +1,22 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        
-        prev1 = 2
-        prev2 = 1
-        if n == 1:
-            return 1
-        for i in range(3 , n + 1):
-            temp = prev1 + prev2
-            prev2 = prev1
-            prev1 = temp
+        dp = [-1] * (n+1)
+        def recurse(n):
+            if n == 0:
+                return 1
+            elif n < 0:
+                return 0
+            
+            if dp[n] != -1:
+                return dp[n]
+            temp1 = 0
+            temp2 = 0
 
-        
-        return prev1
+            temp1 =  recurse(n - 1)
+            temp2 =  recurse(n - 2)
+            dp[n] = (temp1 + temp2)
+            return (temp1 + temp2)
+
+        return recurse(n)
+
