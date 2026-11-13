@@ -5,7 +5,7 @@ class Solution:
             if i >= n:
                 s = ''.join(map(str, temp))
                 ans.append(s)
-                temp = []
+                return
             if i == 0:
                 temp.append(0)
                 generator(i+1, n, temp, ans)
