@@ -1,28 +1,28 @@
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        n = len(candidates)
-        answer = []
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+
+        def combi_sum(i,temp,val,answer,candidates):
+            if i >= len(candidates):
+                return
+
+            if val == target:
+                answer.append(temp.copy())
+                temp = []
+                return
+
+            if val < target:
+                temp.append(candidates[i])
+                val += candidates[i]
+                combi_sum(i, temp, val, answer, candidates)
+                temp.pop()
+                val -= candidates[i]
+                combi_sum(i+1, temp, val, answer, candidates)
+
         temp = []
-        def combiSum(arr, n, target, temp, counter, summ, answer):
-            if counter == n:
-                if summ == target:    
-                    answer.append(temp[:])
-                    return
-                return
-
-            if summ > target or counter > n:
-                return
-            if counter < n:
-                temp.append(arr[counter])
-                summ += arr[counter]
-
-            combiSum (arr,n,target,temp,counter,summ, answer)
-            summ -= arr[counter]
-            temp.pop()
-            combiSum (arr,n,target,temp,counter + 1,summ, answer)
-            return
-        combiSum(candidates, n, target, temp, 0, 0, answer)
+        answer = []
+        combi_sum(0,temp,0,answer, candidates)
         return answer
 
+            
 
         
