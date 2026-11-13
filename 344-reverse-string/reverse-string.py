@@ -1,21 +1,16 @@
 class Solution:
-    def reverseString(self, s: List[str]) -> None:
+    def reverseString(self, s: list[str]) -> None:
         """
         Do not return anything, modify s in-place instead.
         """
 
-        n = len(s)
-        answer = []
-        def stringReverser (count , n):
-            if count == n:
-                return 
-            stringReverser(count + 1, n)
-            answer.append(s[count])
+        def reverse(s, i, j):
+            if i >= j:
+                return
 
-        stringReverser(0, n)
+            s[i], s[j] = s[j], s[i]
+            reverse(s, i+1, j-1)
 
-        for i in range(0,n):
-            s[i] = answer[i]
-            
-
-            
+        reverse(s, 0, len(s)-1)
+        
+        
