@@ -1,23 +1,32 @@
 class Solution:
     def numberOfSubstrings(self, s: str) -> int:
-        arr = [-1] * 3
-        n = len(s)
-        answer = 0
-        for i in range(0,n):
-            temp = ord(s[i]) - ord('a')
-            arr[temp] = i
+        
+        i = 0
+        j = 0
+        hm = {}
+        total = 0
+        def checker():
+            aa = hm.get('a', 0)
+            bb = hm.get('b', 0)
+            cc = hm.get('c', 0)
+            if aa > 0 and bb > 0 and cc > 0:
+                return True
+            return False
 
-            flag = True
-            minn = float('inf')
-            for element in arr:
-                if element == -1:
-                    flag = False
-                    break
-                minn = min(minn, element)
-            if flag == True:
-                answer += minn + 1
+        
+        while j < len(s):
+            element = s[j]
+            hm[element] = hm.get(element, 0) + 1
+            while checker() == True:
+                total += 1
+                total += ((len(s)-1) - j)
+                element_i = s[i]
+                hm[element_i] -= 1
+                i+=1
+            
+            j += 1
+        return total
 
-        return answer
-            
-            
+
+
         
